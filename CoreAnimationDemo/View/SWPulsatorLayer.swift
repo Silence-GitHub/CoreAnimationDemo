@@ -112,6 +112,8 @@ class SWPulsatorLayer: CAReplicatorLayer {
     var pulseLayer: CALayer!
     var animationGroup: CAAnimationGroup!
     
+    private var isAnimatingBeforeLeaving: Bool = false
+    
     var isAnimating: Bool {
         return pulseLayer.animation(forKey: kPulseAnimationKey) != nil
     }
@@ -129,6 +131,9 @@ class SWPulsatorLayer: CAReplicatorLayer {
         pulseLayer.bounds.size = CGSize(width: maxRadius * 2, height: maxRadius * 2)
         pulseLayer.cornerRadius = maxRadius
         addSublayer(pulseLayer)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resume), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
     }
     
     override init(layer: Any) {
@@ -137,6 +142,20 @@ class SWPulsatorLayer: CAReplicatorLayer {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func save() {
+        isAnimatingBeforeLeaving = isAnimating
+    }
+    
+    @objc private func resume() {
+        if isAnimatingBeforeLeaving {
+            start()
+        }
     }
     
     func restartIfNeeded() {
@@ -150,15 +169,12 @@ class SWPulsatorLayer: CAReplicatorLayer {
         
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
         scaleAnimation.duration = animationDuration
-
         
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.duration = animationDuration
         
-        
         let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
         colorAnimation.duration = animationDuration
-        
         
         switch pulseOrientation {
         case .out:
