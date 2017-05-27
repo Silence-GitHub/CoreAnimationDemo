@@ -61,7 +61,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jlh-IW-T5n" userLabel="Count slider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlh-IW-T5n" userLabel="Count slider">
                                 <rect key="frame" x="102" y="325" width="171" height="31"/>
                                 <connections>
                                     <action selector="countChanged:" destination="cuz-AU-5ZS" eventType="valueChanged" id="m2U-p0-9Bx"/>
@@ -79,7 +79,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="20" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="T80-8g-EAZ" userLabel="Max radius slider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="20" maxValue="100" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T80-8g-EAZ" userLabel="Max radius slider">
                                 <rect key="frame" x="102" y="363" width="171" height="31"/>
                                 <connections>
                                     <action selector="maxRadiusChanged:" destination="cuz-AU-5ZS" eventType="valueChanged" id="FeK-as-yBU"/>
@@ -97,7 +97,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="TF3-Id-j5j" userLabel="Duration slider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TF3-Id-j5j" userLabel="Duration slider">
                                 <rect key="frame" x="102" y="401" width="171" height="31"/>
                                 <connections>
                                     <action selector="durationChanged:" destination="cuz-AU-5ZS" eventType="valueChanged" id="V3x-rL-LYJ"/>
@@ -115,7 +115,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="Gmg-xD-DSH" userLabel="Interval slider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmg-xD-DSH" userLabel="Interval slider">
                                 <rect key="frame" x="102" y="439" width="171" height="31"/>
                                 <connections>
                                     <action selector="intervalChanged:" destination="cuz-AU-5ZS" eventType="valueChanged" id="9Bp-dg-mep"/>
@@ -127,13 +127,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srj-UV-iVe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srj-UV-iVe">
                                 <rect key="frame" x="279" y="481" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000000000001" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="08U-RO-ztY" userLabel="Max alpha Slider">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.10000000000000001" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08U-RO-ztY" userLabel="Max alpha Slider">
                                 <rect key="frame" x="102" y="477" width="171" height="31"/>
                                 <connections>
                                     <action selector="maxAlphaChanged:" destination="cuz-AU-5ZS" eventType="valueChanged" id="L9M-v5-CiM"/>
@@ -142,18 +142,30 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwV-tb-V1h">
                                 <rect key="frame" x="145" y="515" width="85" height="30"/>
                                 <state key="normal" title="Blue -&gt; Blue"/>
+                                <connections>
+                                    <action selector="blueToBlue:" destination="cuz-AU-5ZS" eventType="touchUpInside" id="roE-w5-z5p"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylh-Me-RZj">
                                 <rect key="frame" x="141" y="553" width="93" height="30"/>
                                 <state key="normal" title="Red -&gt; Green"/>
+                                <connections>
+                                    <action selector="redToGreen:" destination="cuz-AU-5ZS" eventType="touchUpInside" id="tiF-Lf-Bjk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTg-Nw-7FZ">
                                 <rect key="frame" x="173" y="591" width="30" height="30"/>
-                                <state key="normal" title="Out"/>
+                                <state key="normal" title="In"/>
+                                <connections>
+                                    <action selector="orientationChanged:" destination="cuz-AU-5ZS" eventType="touchUpInside" id="S8Z-gm-w4p"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-QO-ms2">
                                 <rect key="frame" x="171" y="629" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startOrStop:" destination="cuz-AU-5ZS" eventType="touchUpInside" id="AeB-6e-a7n"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mz-bB-OTp">
                                 <rect key="frame" x="279" y="330" width="80" height="21"/>

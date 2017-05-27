@@ -17,7 +17,13 @@ class SWPulsatorLayer: CAReplicatorLayer {
         case `in`
     }
     
-    var pulseOrientation: Orientation = .out
+    var pulseOrientation: Orientation = .out {
+        didSet {
+            if pulseOrientation != oldValue {
+                restartIfNeeded()
+            }
+        }
+    }
     
     var maxRadius: CGFloat = 50 {
         didSet {
@@ -33,39 +39,67 @@ class SWPulsatorLayer: CAReplicatorLayer {
         }
     }
     
-    var outColor: CGColor = UIColor.blue.cgColor // displayed when radius is max
-    var inColor: CGColor = UIColor.red.cgColor // displayed when radius is min
-    
     var maxAlpha: CGFloat = 0.5 {
         didSet {
             assert(maxAlpha >= minAlpha && maxAlpha > 0 && maxAlpha <= 1, "Max alpha (\(maxAlpha)) must >= min alpha (\(minAlpha)), > 0 and <= 1")
+            if maxAlpha != oldValue {
+                restartIfNeeded()
+            }
         }
     }
     
     var minAlpha: CGFloat = 0 {
         didSet {
             assert(minAlpha <= maxAlpha && minAlpha >= 0, "Min alpha (\(minAlpha)) must <= max alpha (\(maxAlpha)) and >= 0")
+            if minAlpha != oldValue {
+                restartIfNeeded()
+            }
+        }
+    }
+    
+    // Pulse color displayed when radius is max
+    var outColor: CGColor = UIColor.blue.cgColor {
+        didSet {
+            if outColor != oldValue {
+                restartIfNeeded()
+            }
+        }
+    }
+    
+    // Pulse color displayed when radius is min
+    var inColor: CGColor = UIColor.red.cgColor {
+        didSet {
+            if inColor != oldValue {
+                restartIfNeeded()
+            }
         }
     }
     
     // Duration for one pulse animation
     var animationDuration: Double = 3 {
         didSet {
-            updateInstanceDelay()
+            if animationDuration != oldValue {
+                restartIfNeeded()
+            }
         }
     }
     
     // Time interval between repeated pulse animations
     var animationInterval: Double = 1 {
         didSet {
-            updateInstanceDelay()
+            if animationInterval != oldValue {
+                restartIfNeeded()
+            }
         }
     }
     
     // Number of pulse to display in one pulse animation duration
     var pulseCount: Int = 5 {
         didSet {
-            updateInstanceDelay()
+            if pulseCount != oldValue {
+                instanceCount = pulseCount
+                restartIfNeeded()
+            }
         }
     }
     
@@ -86,7 +120,6 @@ class SWPulsatorLayer: CAReplicatorLayer {
         super.init()
         
         instanceCount = pulseCount
-        updateInstanceDelay()
         repeatCount = MAXFLOAT
         
         pulseLayer = CALayer()
@@ -106,14 +139,14 @@ class SWPulsatorLayer: CAReplicatorLayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func updateInstanceDelay() {
-        instanceDelay = (animationDuration + animationInterval) / Double(pulseCount)
+    func restartIfNeeded() {
+        if isAnimating {
+            start()
+        }
     }
     
     func start() {
-        let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
-        colorAnimation.duration = animationDuration
-        
+        instanceDelay = (animationDuration + animationInterval) / Double(pulseCount)
         
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
         scaleAnimation.duration = animationDuration
@@ -123,31 +156,35 @@ class SWPulsatorLayer: CAReplicatorLayer {
         opacityAnimation.duration = animationDuration
         
         
+        let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        colorAnimation.duration = animationDuration
+        
+        
         switch pulseOrientation {
         case .out:
-            colorAnimation.fromValue = inColor
-            colorAnimation.toValue = outColor
-            
             scaleAnimation.fromValue = minRadius / maxRadius
             scaleAnimation.toValue = 1
             
             opacityAnimation.fromValue = maxAlpha
             opacityAnimation.toValue = minAlpha
             
-        case .in:
-            colorAnimation.fromValue = outColor
-            colorAnimation.toValue = inColor
+            colorAnimation.fromValue = inColor
+            colorAnimation.toValue = outColor
             
+        case .in:
             scaleAnimation.fromValue = 1
             scaleAnimation.toValue = minRadius / maxRadius
             
             opacityAnimation.fromValue = minAlpha
             opacityAnimation.toValue = maxAlpha
+            
+            colorAnimation.fromValue = outColor
+            colorAnimation.toValue = inColor
         }
         
         animationGroup = CAAnimationGroup()
         animationGroup.duration = animationDuration + animationInterval
-        animationGroup.animations = [colorAnimation, scaleAnimation, opacityAnimation]
+        animationGroup.animations = [scaleAnimation, opacityAnimation, colorAnimation]
         animationGroup.repeatCount = repeatCount
         pulseLayer.add(animationGroup, forKey: kPulseAnimationKey)
     }

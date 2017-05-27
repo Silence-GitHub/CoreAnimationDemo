@@ -20,22 +20,17 @@ class PulsatorVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Start", style: .plain, target: self, action: #selector(rightButtonClicked))
         
         view.backgroundColor = .white
         pulsatorLayer = SWPulsatorLayer()
         pulsatorLayer.frame = CGRect(x: view.bounds.width / 2, y: 170, width: 0, height: 0)
         view.layer.addSublayer(pulsatorLayer)
         
-    }
-    
-    @objc private func rightButtonClicked() {
-        if pulsatorLayer.isAnimating {
-            pulsatorLayer.stop()
-        } else {
-            pulsatorLayer.start()
-        }
+        countLabel.text = "\(pulsatorLayer.pulseCount)"
+        maxRadiusLabel.text = String(format: "%.2f", pulsatorLayer.maxRadius)
+        durationLabel.text = String(format: "%.2f", pulsatorLayer.animationDuration)
+        intervalLabel.text = String(format: "%.2f", pulsatorLayer.animationInterval)
+        maxAlphaLabel.text = String(format: "%.2f", pulsatorLayer.maxAlpha)
     }
     
     @IBAction func countChanged(_ sender: UISlider) {
@@ -63,4 +58,34 @@ class PulsatorVC: UIViewController {
         maxAlphaLabel.text = String(format: "%.2f", pulsatorLayer.maxAlpha)
     }
 
+    @IBAction func blueToBlue(_ sender: UIButton) {
+        pulsatorLayer.inColor = UIColor.blue.cgColor
+        pulsatorLayer.outColor = UIColor.blue.cgColor
+    }
+    
+    @IBAction func redToGreen(_ sender: UIButton) {
+        pulsatorLayer.inColor = UIColor.red.cgColor
+        pulsatorLayer.outColor = UIColor.green.cgColor
+    }
+    
+    @IBAction func orientationChanged(_ sender: UIButton) {
+        switch pulsatorLayer.pulseOrientation {
+        case .out:
+            pulsatorLayer.pulseOrientation = .in
+            sender.setTitle("Out", for: .normal)
+        default:
+            pulsatorLayer.pulseOrientation = .out
+            sender.setTitle("In", for: .normal)
+        }
+    }
+    
+    @IBAction func startOrStop(_ sender: UIButton) {
+        if pulsatorLayer.isAnimating {
+            pulsatorLayer.stop()
+            sender.setTitle("Start", for: .normal)
+        } else {
+            pulsatorLayer.start()
+            sender.setTitle("Stop", for: .normal)
+        }
+    }
 }
