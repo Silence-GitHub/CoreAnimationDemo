@@ -103,6 +103,8 @@ class SWPulsatorLayer: CAReplicatorLayer {
         }
     }
     
+    // Set this property before starting animation
+    // Setting after starting animation has no effect
     override var repeatCount: Float {
         didSet {
             animationGroup?.repeatCount = repeatCount
