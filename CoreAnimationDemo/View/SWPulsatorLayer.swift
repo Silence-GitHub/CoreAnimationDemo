@@ -103,16 +103,7 @@ class SWPulsatorLayer: CAReplicatorLayer {
         }
     }
     
-    // Set this property before starting animation
-    // Setting after starting animation has no effect
-    override var repeatCount: Float {
-        didSet {
-            animationGroup?.repeatCount = repeatCount
-        }
-    }
-    
     var pulseLayer: CALayer!
-    var animationGroup: CAAnimationGroup!
     
     private var isAnimatingBeforeLeaving: Bool = false
     
@@ -167,6 +158,8 @@ class SWPulsatorLayer: CAReplicatorLayer {
     }
     
     func start() {
+        stop()
+        
         instanceDelay = (animationDuration + animationInterval) / Double(pulseCount)
         
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale.xy")
@@ -200,7 +193,7 @@ class SWPulsatorLayer: CAReplicatorLayer {
             colorAnimation.toValue = inColor
         }
         
-        animationGroup = CAAnimationGroup()
+        let animationGroup = CAAnimationGroup()
         animationGroup.duration = animationDuration + animationInterval
         animationGroup.animations = [scaleAnimation, opacityAnimation, colorAnimation]
         animationGroup.repeatCount = repeatCount
