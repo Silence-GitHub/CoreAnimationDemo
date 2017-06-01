@@ -312,6 +312,11 @@
                             <constraint firstItem="lfV-6k-jiM" firstAttribute="centerY" secondItem="PAH-C3-Vhr" secondAttribute="centerY" id="yoj-hD-911"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="centerHeartButton" destination="sJa-gM-YB7" id="GCk-t0-wwD"/>
+                        <outlet property="leftHeartButton" destination="EL4-XU-shs" id="iOQ-XU-9De"/>
+                        <outlet property="rightHeartButton" destination="lfV-6k-jiM" id="6Bv-Dr-zmq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ah2-3u-oaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

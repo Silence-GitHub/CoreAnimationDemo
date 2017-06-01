@@ -10,12 +10,19 @@ import UIKit
 
 class EmitterVC: UIViewController {
 
+    @IBOutlet weak var centerHeartButton: UIButton!
+    @IBOutlet weak var leftHeartButton: UIButton!
+    @IBOutlet weak var rightHeartButton: UIButton!
+    
     private var rainLayer: CAEmitterLayer!
+    
+    private var centerHeartLayer: CAEmitterLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupRainLayer()
+        setupCenterHeartLayer()
     }
     
     private func setupRainLayer() {
@@ -35,8 +42,30 @@ class EmitterVC: UIViewController {
         cell.velocity = 500
         cell.emissionLongitude = CGFloat.pi
         rainLayer.emitterCells = [cell]
-        
+
         view.layer.addSublayer(rainLayer)
+    }
+    
+    private func setupCenterHeartLayer() {
+        centerHeartLayer = CAEmitterLayer()
+        centerHeartLayer.emitterShape = kCAEmitterLayerCircle
+        centerHeartLayer.emitterMode = kCAEmitterLayerOutline
+        centerHeartLayer.renderMode = kCAEmitterLayerOldestFirst
+        centerHeartLayer.emitterPosition = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+        centerHeartLayer.emitterSize = centerHeartButton.frame.size
+        centerHeartLayer.birthRate = 0
+        
+        let cell = CAEmitterCell()
+        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.lifetime = 1
+        cell.birthRate = 2000
+        cell.scale = 0.05
+        cell.scaleSpeed = -0.02
+        cell.velocity = 30
+        cell.alphaSpeed = -1
+        centerHeartLayer.emitterCells = [cell]
+        
+        view.layer.addSublayer(centerHeartLayer)
     }
 
     @IBAction func rainButtonClicked(_ sender: UIButton) {
@@ -55,6 +84,12 @@ class EmitterVC: UIViewController {
     }
     
     @IBAction func centerHeartButtonClicked(_ sender: UIButton) {
+        centerHeartLayer.beginTime = CACurrentMediaTime() // There will be too many cell without setting begin time
+        centerHeartLayer.birthRate = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.centerHeartLayer.birthRate = 0
+        }
     }
     
     @IBAction func leftHeartButtonClicked(_ sender: UIButton) {
