@@ -103,7 +103,7 @@ class SWPulsatorLayer: CAReplicatorLayer {
         }
     }
     
-    var pulseLayer: CALayer!
+    private var pulseLayer: CALayer!
     
     private var isAnimatingBeforeLeaving: Bool = false
     
