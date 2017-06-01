@@ -323,6 +323,37 @@
             </objects>
             <point key="canvasLocation" x="2598" y="150"/>
         </scene>
+        <!--WaveVC-->
+        <scene sceneID="fcq-LE-VBs">
+            <objects>
+                <viewController storyboardIdentifier="WaveVC" id="giS-Sg-8dW" customClass="WaveVC" customModule="CoreAnimationDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tbX-6z-bfJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wok-nT-hkW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rno-kt-Yma">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uth-aC-8Df">
+                                <rect key="frame" x="170" y="629" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="startOrStop:" destination="giS-Sg-8dW" eventType="touchUpInside" id="DzN-cL-pkm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wok-nT-hkW" firstAttribute="top" secondItem="uth-aC-8Df" secondAttribute="bottom" constant="8" symbolic="YES" id="K3q-0w-W7e"/>
+                            <constraint firstItem="uth-aC-8Df" firstAttribute="centerX" secondItem="Rno-kt-Yma" secondAttribute="centerX" id="hUy-dr-1cw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="beD-NP-Igc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3380" y="150"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ChF-sd-Zjm">
             <objects>

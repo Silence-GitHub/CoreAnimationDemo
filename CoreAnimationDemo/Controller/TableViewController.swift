@@ -24,7 +24,7 @@ class TableViewController: UITableViewController {
 
     // MARK: - Table view data source
     
-    private let titles: [String] = ["Pulsator", "Emitter"]
+    private let titles: [String] = ["Pulsator", "Emitter", "Wave"]
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -49,6 +49,8 @@ class TableViewController: UITableViewController {
             vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PulsatorVC")
         case 1:
             vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EmitterVC")
+        case 2:
+            vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WaveVC")
         default:
             fatalError()
         }
