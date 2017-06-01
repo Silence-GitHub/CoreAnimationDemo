@@ -14,6 +14,7 @@
 		4AB2673D1ED927B600DC5806 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2673C1ED927B600DC5806 /* TableViewController.swift */; };
 		4AB2673F1ED928EF00DC5806 /* PulsatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2673E1ED928EF00DC5806 /* PulsatorVC.swift */; };
 		4AB267421ED92A8F00DC5806 /* SWPulsatorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB267411ED92A8F00DC5806 /* SWPulsatorLayer.swift */; };
+		4AB267441EDFCC1E00DC5806 /* EmitterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4AB2673C1ED927B600DC5806 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		4AB2673E1ED928EF00DC5806 /* PulsatorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulsatorVC.swift; sourceTree = "<group>"; };
 		4AB267411ED92A8F00DC5806 /* SWPulsatorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWPulsatorLayer.swift; sourceTree = "<group>"; };
+		4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				4AB2673C1ED927B600DC5806 /* TableViewController.swift */,
 				4AB2673E1ED928EF00DC5806 /* PulsatorVC.swift */,
+				4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				4AB267421ED92A8F00DC5806 /* SWPulsatorLayer.swift in Sources */,
 				4AB2673F1ED928EF00DC5806 /* PulsatorVC.swift in Sources */,
 				4AB2673D1ED927B600DC5806 /* TableViewController.swift in Sources */,
+				4AB267441EDFCC1E00DC5806 /* EmitterVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +329,7 @@
 				4AB2673A1ED9273B00DC5806 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

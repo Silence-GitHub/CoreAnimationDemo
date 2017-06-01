@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -252,6 +253,70 @@
             </objects>
             <point key="canvasLocation" x="1820" y="149.77511244377811"/>
         </scene>
+        <!--EmitterVC-->
+        <scene sceneID="5AZ-hM-0pw">
+            <objects>
+                <viewController storyboardIdentifier="EmitterVC" id="Jge-EH-TQy" customClass="EmitterVC" customModule="CoreAnimationDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u14-eo-3dy"/>
+                        <viewControllerLayoutGuide type="bottom" id="feA-5v-2Jy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PAH-C3-Vhr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMP-Jg-y17">
+                                <rect key="frame" x="172" y="152" width="30" height="30"/>
+                                <state key="normal" title="Rain"/>
+                                <connections>
+                                    <action selector="rainButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="eaX-JL-yji"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-sU-CG2">
+                                <rect key="frame" x="164" y="485.5" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJa-gM-YB7" userLabel="Center heart button">
+                                <rect key="frame" x="177" y="322" width="21" height="22"/>
+                                <state key="normal" image="Heart"/>
+                                <connections>
+                                    <action selector="centerHeartButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="HoT-gp-BGi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-XU-shs" userLabel="Left heart button">
+                                <rect key="frame" x="84" y="322" width="21" height="22"/>
+                                <state key="normal" image="Heart"/>
+                                <connections>
+                                    <action selector="leftHeartButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="7xS-MR-Cdp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfV-6k-jiM" userLabel="Right heart button">
+                                <rect key="frame" x="271.5" y="322" width="21" height="22"/>
+                                <state key="normal" image="Heart"/>
+                                <connections>
+                                    <action selector="rightHeartButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="yzE-j1-ugZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lfV-6k-jiM" firstAttribute="centerX" secondItem="PAH-C3-Vhr" secondAttribute="centerX" multiplier="1.5" id="3fd-mp-klt"/>
+                            <constraint firstItem="EL4-XU-shs" firstAttribute="centerY" secondItem="PAH-C3-Vhr" secondAttribute="centerY" id="Asy-qA-AHV"/>
+                            <constraint firstItem="PMP-Jg-y17" firstAttribute="centerY" secondItem="PAH-C3-Vhr" secondAttribute="centerY" multiplier="0.5" id="C5k-h2-0ZU"/>
+                            <constraint firstItem="sJa-gM-YB7" firstAttribute="centerX" secondItem="PAH-C3-Vhr" secondAttribute="centerX" id="Yrf-VU-AzP"/>
+                            <constraint firstItem="cIO-sU-CG2" firstAttribute="centerX" secondItem="PAH-C3-Vhr" secondAttribute="centerX" id="aZ5-Pd-3cU"/>
+                            <constraint firstItem="PMP-Jg-y17" firstAttribute="centerX" secondItem="PAH-C3-Vhr" secondAttribute="centerX" id="awb-4m-3Ax"/>
+                            <constraint firstItem="cIO-sU-CG2" firstAttribute="centerY" secondItem="PAH-C3-Vhr" secondAttribute="centerY" multiplier="1.5" id="ogb-mY-QLK"/>
+                            <constraint firstItem="sJa-gM-YB7" firstAttribute="centerY" secondItem="PAH-C3-Vhr" secondAttribute="centerY" id="qjb-LZ-6Rd"/>
+                            <constraint firstItem="EL4-XU-shs" firstAttribute="centerX" secondItem="PAH-C3-Vhr" secondAttribute="centerX" multiplier="0.5" id="uMy-Tr-6fk"/>
+                            <constraint firstItem="lfV-6k-jiM" firstAttribute="centerY" secondItem="PAH-C3-Vhr" secondAttribute="centerY" id="yoj-hD-911"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ah2-3u-oaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2598" y="150"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ChF-sd-Zjm">
             <objects>
@@ -271,4 +336,7 @@
             <point key="canvasLocation" x="101.59999999999999" y="149.77511244377811"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Heart" width="21" height="21"/>
+    </resources>
 </document>
