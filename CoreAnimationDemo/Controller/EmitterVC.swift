@@ -40,14 +40,14 @@ class EmitterVC: UIViewController {
         rainLayer.birthRate = 0 // Stop animation by default
         
         let cell = CAEmitterCell()
-        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.contents = #imageLiteral(resourceName: "Heart_red").cgImage
         cell.scale = 0.1
         cell.lifetime = 5
         cell.birthRate = 1000
         cell.velocity = 500
         cell.emissionLongitude = CGFloat.pi
+        
         rainLayer.emitterCells = [cell]
-
         view.layer.addSublayer(rainLayer)
     }
     
@@ -61,15 +61,15 @@ class EmitterVC: UIViewController {
         centerHeartLayer.birthRate = 0
         
         let cell = CAEmitterCell()
-        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.contents = #imageLiteral(resourceName: "Heart_red").cgImage
         cell.lifetime = 1
         cell.birthRate = 2000
         cell.scale = 0.05
         cell.scaleSpeed = -0.02
         cell.alphaSpeed = -1
         cell.velocity = 30
-        centerHeartLayer.emitterCells = [cell]
         
+        centerHeartLayer.emitterCells = [cell]
         view.layer.addSublayer(centerHeartLayer)
     }
     
@@ -82,15 +82,15 @@ class EmitterVC: UIViewController {
         leftHeartLayer.birthRate = 0
         
         let cell = CAEmitterCell()
-        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.contents = #imageLiteral(resourceName: "Heart_red").cgImage
         cell.scale = 0.5
         cell.lifetime = 1
         cell.birthRate = 10 // emit duration = 0.1, only 1 cell displayed each time
         cell.alphaSpeed = -1
         cell.velocity = 50
         cell.emissionLongitude = -CGFloat.pi / 2
-        leftHeartLayer.emitterCells = [cell]
         
+        leftHeartLayer.emitterCells = [cell]
         view.layer.addSublayer(leftHeartLayer)
     }
     
@@ -101,7 +101,7 @@ class EmitterVC: UIViewController {
         rightHeartLayer.birthRate = 0
         
         let cell = CAEmitterCell()
-        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.contents = #imageLiteral(resourceName: "Heart_red").cgImage
         cell.scale = 0.5
         cell.lifetime = 1
         cell.birthRate = 5
@@ -109,8 +109,8 @@ class EmitterVC: UIViewController {
         cell.velocity = 50
         cell.emissionLongitude = -CGFloat.pi / 2
         cell.emissionRange = CGFloat.pi / 4
-        rightHeartLayer.emitterCells = [cell]
         
+        rightHeartLayer.emitterCells = [cell]
         view.layer.addSublayer(rightHeartLayer)
     }
     
@@ -121,7 +121,7 @@ class EmitterVC: UIViewController {
         gravityLayer.birthRate = 0
         
         let cell = CAEmitterCell()
-        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.contents = #imageLiteral(resourceName: "Heart_red").cgImage
         cell.scale = 0.5
         cell.lifetime = 10
         cell.alphaSpeed = -0.1
@@ -132,8 +132,21 @@ class EmitterVC: UIViewController {
         cell.emissionRange = CGFloat.pi / 4
         cell.spin = 0 // default value
         cell.spinRange = CGFloat.pi * 2
-        gravityLayer.emitterCells = [cell]
         
+        let cell2 = CAEmitterCell()
+        cell2.contents = #imageLiteral(resourceName: "Heart_blue").cgImage
+        cell2.scale = 0.3
+        cell2.lifetime = 20
+        cell2.alphaSpeed = -0.05
+        cell2.birthRate = 5
+        cell2.velocity = 135
+        cell2.yAcceleration = 20
+        cell2.emissionLongitude = -CGFloat.pi / 4
+        cell2.emissionRange = CGFloat.pi / 4
+        cell2.spin = 0 // default value
+        cell2.spinRange = CGFloat.pi * 2
+        
+        gravityLayer.emitterCells = [cell, cell2]
         view.layer.addSublayer(gravityLayer)
     }
 

@@ -281,21 +281,21 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJa-gM-YB7" userLabel="Center heart button">
                                 <rect key="frame" x="177" y="322" width="21" height="22"/>
-                                <state key="normal" image="Heart"/>
+                                <state key="normal" image="Heart_red"/>
                                 <connections>
                                     <action selector="centerHeartButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="HoT-gp-BGi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EL4-XU-shs" userLabel="Left heart button">
                                 <rect key="frame" x="84" y="322" width="21" height="22"/>
-                                <state key="normal" image="Heart"/>
+                                <state key="normal" image="Heart_red"/>
                                 <connections>
                                     <action selector="leftHeartButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="7xS-MR-Cdp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lfV-6k-jiM" userLabel="Right heart button">
                                 <rect key="frame" x="271.5" y="322" width="21" height="22"/>
-                                <state key="normal" image="Heart"/>
+                                <state key="normal" image="Heart_red"/>
                                 <connections>
                                     <action selector="rightHeartButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="yzE-j1-ugZ"/>
                                 </connections>
@@ -343,6 +343,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Heart" width="21" height="21"/>
+        <image name="Heart_red" width="21" height="21"/>
     </resources>
 </document>
