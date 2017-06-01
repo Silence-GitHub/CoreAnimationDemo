@@ -272,9 +272,12 @@
                                     <action selector="rainButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="eaX-JL-yji"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-sU-CG2">
-                                <rect key="frame" x="164" y="485.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-sU-CG2" userLabel="Gravity button">
+                                <rect key="frame" x="163" y="485.5" width="49" height="30"/>
+                                <state key="normal" title="Gravity"/>
+                                <connections>
+                                    <action selector="gravityButtonClicked:" destination="Jge-EH-TQy" eventType="touchUpInside" id="iOx-sn-f85"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJa-gM-YB7" userLabel="Center heart button">
                                 <rect key="frame" x="177" y="322" width="21" height="22"/>
@@ -314,8 +317,6 @@
                     </view>
                     <connections>
                         <outlet property="centerHeartButton" destination="sJa-gM-YB7" id="GCk-t0-wwD"/>
-                        <outlet property="leftHeartButton" destination="EL4-XU-shs" id="iOQ-XU-9De"/>
-                        <outlet property="rightHeartButton" destination="lfV-6k-jiM" id="6Bv-Dr-zmq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ah2-3u-oaE" userLabel="First Responder" sceneMemberID="firstResponder"/>

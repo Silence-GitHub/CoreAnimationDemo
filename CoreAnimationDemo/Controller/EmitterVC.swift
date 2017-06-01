@@ -11,14 +11,14 @@ import UIKit
 class EmitterVC: UIViewController {
 
     @IBOutlet weak var centerHeartButton: UIButton!
-    @IBOutlet weak var leftHeartButton: UIButton!
-    @IBOutlet weak var rightHeartButton: UIButton!
     
     private var rainLayer: CAEmitterLayer!
     
     private var centerHeartLayer: CAEmitterLayer!
     private var leftHeartLayer: CAEmitterLayer!
     private var rightHeartLayer: CAEmitterLayer!
+    
+    private var gravityLayer: CAEmitterLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,7 @@ class EmitterVC: UIViewController {
         setupCenterHeartLayer()
         setupLeftHeartLayer()
         setupRightHeartLayer()
+        setupGravityLayer()
     }
     
     private func setupRainLayer() {
@@ -112,10 +113,33 @@ class EmitterVC: UIViewController {
         
         view.layer.addSublayer(rightHeartLayer)
     }
+    
+    private func setupGravityLayer() {
+        gravityLayer = CAEmitterLayer()
+        gravityLayer.renderMode = kCAEmitterLayerOldestFirst
+        gravityLayer.emitterPosition = CGPoint(x: 0, y: view.bounds.maxY)
+        gravityLayer.birthRate = 0
+        
+        let cell = CAEmitterCell()
+        cell.contents = #imageLiteral(resourceName: "Heart").cgImage
+        cell.scale = 0.5
+        cell.lifetime = 10
+        cell.alphaSpeed = -0.1
+        cell.birthRate = 10
+        cell.velocity = 100
+        cell.yAcceleration = 20
+        cell.emissionLongitude = -CGFloat.pi / 4
+        cell.emissionRange = CGFloat.pi / 4
+        cell.spin = 0 // default value
+        cell.spinRange = CGFloat.pi * 2
+        gravityLayer.emitterCells = [cell]
+        
+        view.layer.addSublayer(gravityLayer)
+    }
 
     @IBAction func rainButtonClicked(_ sender: UIButton) {
         let birthRateAnimation = CABasicAnimation(keyPath: "birthRate")
-        birthRateAnimation.duration = 3 
+        birthRateAnimation.duration = 3
         if rainLayer.birthRate == 0 {
             birthRateAnimation.fromValue = 0
             birthRateAnimation.toValue = 1
@@ -152,6 +176,15 @@ class EmitterVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.rightHeartLayer.birthRate = 0
+        }
+    }
+    
+    @IBAction func gravityButtonClicked(_ sender: UIButton) {
+        if gravityLayer.birthRate == 0 {
+            gravityLayer.beginTime = CACurrentMediaTime()
+            gravityLayer.birthRate = 1
+        } else {
+            gravityLayer.birthRate = 0
         }
     }
 }
