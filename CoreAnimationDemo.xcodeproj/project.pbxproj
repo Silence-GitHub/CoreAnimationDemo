@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A9159CA1EE18392004051BF /* BoatWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9159C91EE18392004051BF /* BoatWaveView.swift */; };
 		4AB2672A1ED9273B00DC5806 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB267291ED9273B00DC5806 /* AppDelegate.swift */; };
 		4AB2672F1ED9273B00DC5806 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AB2672D1ED9273B00DC5806 /* Main.storyboard */; };
 		4AB267311ED9273B00DC5806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AB267301ED9273B00DC5806 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A9159C91EE18392004051BF /* BoatWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoatWaveView.swift; sourceTree = "<group>"; };
 		4AB267261ED9273B00DC5806 /* CoreAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB267291ED9273B00DC5806 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AB2672E1ED9273B00DC5806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				4AB267411ED92A8F00DC5806 /* SWPulsatorLayer.swift */,
+				4A9159C91EE18392004051BF /* BoatWaveView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB2672A1ED9273B00DC5806 /* AppDelegate.swift in Sources */,
+				4A9159CA1EE18392004051BF /* BoatWaveView.swift in Sources */,
 				4AB267421ED92A8F00DC5806 /* SWPulsatorLayer.swift in Sources */,
 				4AB2673F1ED928EF00DC5806 /* PulsatorVC.swift in Sources */,
 				4AB2673D1ED927B600DC5806 /* TableViewController.swift in Sources */,
