@@ -14,13 +14,13 @@ private let PI_Circle: CGFloat = CGFloat.pi * 2
 class BoatWaveView: UIView {
 
     /**
-     Wave move step.
+     Wave horizontal move step.
      A positive value specifies right movement, a negative value specifies left movement.
      This value should NOT be 0.
      */
-    var step: CGFloat = 0.05 {
+    var horizontalStep: CGFloat = 0.05 {
         didSet {
-            assert(step != 0, "Step (\(step)) must != 0")
+            assert(horizontalStep != 0, "Horizontal step (\(horizontalStep)) must != 0")
         }
     }
     
@@ -42,9 +42,41 @@ class BoatWaveView: UIView {
      The height between a wave highest point and lowest point (H - L).
      This value should be greater than or equal to 0.
      */
-    var waveHeight: CGFloat = 50 {
+    var waveHeight: CGFloat = 0 {
         didSet {
-            assert(waveHeight >= 0, "Wave height (\(waveHeight)) must >= 0")
+            assert(waveHeight >= 0 && waveHeight <= maxWaveHeight, "Wave height (\(waveHeight)) must >= 0 and <= \(maxWaveHeight)")
+        }
+    }
+    
+    var maxWaveHeight: CGFloat {
+        return bounds.height - kBoatImageViewSize.height - minWaterDepth
+    }
+    
+    /**
+     Target wave height to change.
+     Change this value will make wave height change by step (see waveHeightStep property) until wave height is equal to this value.
+     */
+    var targetWaveHeight: CGFloat = 50 {
+        didSet {
+            assert(targetWaveHeight >= 0 && targetWaveHeight <= maxWaveHeight,
+                   "Target wave height (\(targetWaveHeight)) must >= 0 and <= \(maxWaveHeight)")
+            if targetWaveHeight > 0 {
+                lastPositiveTargetWaveHeight = targetWaveHeight
+            }
+        }
+    }
+    
+    /**
+     Use this value to start animation if target wave height is 0.
+     */
+    private var lastPositiveTargetWaveHeight: CGFloat = 50
+    
+    /**
+     Step of wave height change each time
+     */
+    var waveHeightStep: CGFloat = 0.2 {
+        didSet {
+            assert(waveHeightStep > 0, "Wave height step (\(waveHeightStep)) must > 0")
         }
     }
     
@@ -95,9 +127,7 @@ class BoatWaveView: UIView {
         skyLayer = sky
         
         boatImageView = UIImageView(image: #imageLiteral(resourceName: "Boat"))
-        boatImageView.frame = CGRect(origin: CGPoint(x: bounds.midX - kBoatImageViewSize.width / 2,
-                                                     y: bounds.maxY - minWaterDepth - waveHeight / 2 - kBoatImageViewSize.height),
-                                     size: kBoatImageViewSize)
+        updateBoatFrame()
         addSubview(boatImageView)
         
         let underWave = CAGradientLayer()
@@ -116,10 +146,48 @@ class BoatWaveView: UIView {
         underWaveLayer.mask = waveLayer
     }
     
+    private func updateBoatFrame() {
+        boatImageView.frame = CGRect(origin: CGPoint(x: bounds.midX - kBoatImageViewSize.width / 2,
+                                                     y: bounds.maxY - minWaterDepth - waveHeight / 2 - kBoatImageViewSize.height),
+                                     size: kBoatImageViewSize)
+    }
+    
     @objc private func waveLinkRefresh() {
+        defer {
+            var needToUpdate = false
+            if waveHeight < targetWaveHeight {
+                let temp = waveHeight + waveHeightStep
+                if temp > targetWaveHeight {
+                    waveHeight = targetWaveHeight
+                } else {
+                    waveHeight = temp
+                }
+                needToUpdate = true
+            } else if waveHeight > targetWaveHeight {
+                let temp = waveHeight - waveHeightStep
+                if temp < targetWaveHeight {
+                    waveHeight = targetWaveHeight
+                } else {
+                    waveHeight = temp
+                }
+                needToUpdate = true
+            }
+            if needToUpdate {
+                let transform = boatImageView.transform
+                boatImageView.transform = .identity
+                updateBoatFrame()
+                boatImageView.transform = transform
+            }
+        }
+        guard waveHeight > 0 else {
+            if targetWaveHeight == 0 {
+                waveLink?.isPaused = true
+            }
+            return
+        }
         let totalWidth: CGFloat = bounds.width
-        assert(totalWidth > 0 && waveHeight <= bounds.height - kBoatImageViewSize.height - minWaterDepth,
-               "Total width (\(totalWidth)) must > 0 and wave height (\(waveHeight)) must <= \(bounds.height - kBoatImageViewSize.height - minWaterDepth)")
+        assert(totalWidth > 0 && waveHeight <= maxWaveHeight,
+               "Total width (\(totalWidth)) must > 0 and wave height (\(waveHeight)) must <= \(maxWaveHeight)")
         
         func angleInRadians(at x: CGFloat) -> CGFloat {
             return x / totalWidth * (PI_Circle * cycleCount)
@@ -161,7 +229,7 @@ class BoatWaveView: UIView {
         let tanValue = -waveHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
         boatImageView.transform = transform.rotated(by: atan(tanValue))
         
-        currentPhase += step
+        currentPhase += horizontalStep
         if currentPhase > PI_Circle {
             currentPhase -= PI_Circle
         } else if currentPhase < PI_Circle {
@@ -179,12 +247,28 @@ class BoatWaveView: UIView {
         }
     }
     
+    /**
+     Start animation. If wave height is 0, use last positive wave height.
+     */
     func start() {
+        if waveHeight == 0, targetWaveHeight == 0 {
+            targetWaveHeight = lastPositiveTargetWaveHeight
+        }
         waveLink?.isPaused = false
     }
     
-    func stop() {
+    /**
+     Pause animation.
+     */
+    func pause() {
         waveLink?.isPaused = true
+    }
+    
+    /**
+     Stop animation by reducing wave height step by step until it is 0.
+     */
+    func stop() {
+        targetWaveHeight = 0
     }
 
 }
