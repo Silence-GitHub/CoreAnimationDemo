@@ -56,9 +56,13 @@ class BoatWaveView: UIView {
         let cycleCount: CGFloat = 0.5
         UIGraphicsBeginImageContext(CGSize(width: totalWidth, height: totalHeight))
         
+        func angleInRadians(at x: CGFloat) -> CGFloat {
+            return x / totalWidth * (CGFloat.pi * 2 * cycleCount)
+        }
+        
         func point(at i: Int) -> CGPoint {
             let x = CGFloat(i)
-            let angle = x / totalWidth * (CGFloat.pi * 2 * cycleCount)
+            let angle = angleInRadians(at: x)
             return CGPoint(x: x, y: (1 - sin(angle + currentPhase)) * totalHeight / 2)
         }
         
@@ -76,7 +80,9 @@ class BoatWaveView: UIView {
         let bottomCenter = point(at: Int(centerX))
         var transform: CGAffineTransform = .identity
         transform = transform.translatedBy(x: 0, y: bottomCenter.y - bounds.midY)
-//        transform = transform.rotated(by: atan(cos(centerX + currentPhase)))
+        let angle = angleInRadians(at: centerX)
+        let tanValue = -totalHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
+        transform = transform.rotated(by: atan(tanValue))
         boatImageView.transform = transform
         
         currentPhase += 0.05
