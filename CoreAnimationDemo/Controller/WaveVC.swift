@@ -12,22 +12,56 @@ class WaveVC: UIViewController {
 
     private var boatWaveView: BoatWaveView!
     
+    @IBOutlet weak var cycleCountLabel: UILabel!
+    @IBOutlet weak var targetWaveHeightLabel: UILabel!
+    @IBOutlet weak var horizontalStepLabel: UILabel!
+    @IBOutlet weak var minWaterDepthLabel: UILabel!
+    @IBOutlet weak var waveHeightStepLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         
-        boatWaveView = BoatWaveView(frame: CGRect(x: 10, y: 200, width: view.bounds.width - 20, height: 100))
+        boatWaveView = BoatWaveView(frame: CGRect(x: 0, y: 100, width: view.bounds.width, height: 100))
         view.addSubview(boatWaveView)
     }
+    
+    @IBAction func cycleCountChanged(_ sender: UISlider) {
+        boatWaveView.cycleCount = CGFloat(sender.value)
+        cycleCountLabel.text = String(format: "%.2f", sender.value)
+    }
+    
+    @IBAction func targetWaveHeightChanged(_ sender: UISlider) {
+        boatWaveView.targetWaveHeight = CGFloat(sender.value)
+        targetWaveHeightLabel.text = String(format: "%.2f", sender.value)
+    }
+    
+    @IBAction func horizontalStepChanged(_ sender: UISlider) {
+        boatWaveView.horizontalStep = CGFloat(sender.value)
+        horizontalStepLabel.text = String(format: "%.2f", sender.value)
+    }
 
-    @IBAction func startOrStop(_ sender: UIButton) {
-        if boatWaveView.isAnimating {
-            boatWaveView.stop()
-            sender.setTitle("Start", for: .normal)
-        } else {
-            boatWaveView.start()
-            sender.setTitle("Stop", for: .normal)
-        }
+    @IBAction func minWaterDepthChanged(_ sender: UISlider) {
+        boatWaveView.minWaterDepth = CGFloat(sender.value)
+        minWaterDepthLabel.text = String(format: "%.2f", sender.value)
+    }
+    
+    @IBAction func waveHeightStepChanged(_ sender: UISlider) {
+        boatWaveView.waveHeightStep = CGFloat(sender.value)
+        waveHeightStepLabel.text = String(format: "%.2f", sender.value)
+    }
+    
+    @IBAction func pause(_ sender: UIButton) {
+        boatWaveView.pause()
+        
+    }
+    
+    @IBAction func stop(_ sender: UIButton) {
+        boatWaveView.stop()
+    }
+    @IBAction func start(_ sender: UIButton) {
+        boatWaveView.start()
+        
     }
 }

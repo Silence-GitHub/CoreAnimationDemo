@@ -87,6 +87,8 @@ class BoatWaveView: UIView {
     var minWaterDepth: CGFloat = 20 {
         didSet {
             assert(minWaterDepth > 0, "Min water depth (\(minWaterDepth)) must > 0")
+            updateBoatFrame()
+            updateWaveWhenNoAnimation()
         }
     }
     
@@ -138,6 +140,11 @@ class BoatWaveView: UIView {
         underWaveLayer = underWave
         
         waveLayer = CAShapeLayer()
+        updateWaveWhenNoAnimation()
+    }
+    
+    private func updateWaveWhenNoAnimation() {
+        guard !isAnimating else { return }
         let path = UIBezierPath(rect: CGRect(x: 0,
                                              y: bounds.maxY - minWaterDepth - waveHeight / 2,
                                              width: bounds.width,
@@ -147,9 +154,12 @@ class BoatWaveView: UIView {
     }
     
     private func updateBoatFrame() {
+        let transform = boatImageView.transform
+        boatImageView.transform = .identity
         boatImageView.frame = CGRect(origin: CGPoint(x: bounds.midX - kBoatImageViewSize.width / 2,
                                                      y: bounds.maxY - minWaterDepth - waveHeight / 2 - kBoatImageViewSize.height),
                                      size: kBoatImageViewSize)
+        boatImageView.transform = transform
     }
     
     @objc private func waveLinkRefresh() {
@@ -173,10 +183,7 @@ class BoatWaveView: UIView {
                 needToUpdate = true
             }
             if needToUpdate {
-                let transform = boatImageView.transform
-                boatImageView.transform = .identity
                 updateBoatFrame()
-                boatImageView.transform = transform
             }
         }
         guard waveHeight > 0 else {
