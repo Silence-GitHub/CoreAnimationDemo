@@ -96,7 +96,7 @@ class BoatWaveView: UIView {
         
         boatImageView = UIImageView(image: #imageLiteral(resourceName: "Boat"))
         boatImageView.frame = CGRect(origin: CGPoint(x: bounds.midX - kBoatImageViewSize.width / 2,
-                                                     y: bounds.midY - kBoatImageViewSize.height),
+                                                     y: bounds.maxY - minWaterDepth - waveHeight / 2 - kBoatImageViewSize.height),
                                      size: kBoatImageViewSize)
         addSubview(boatImageView)
         
@@ -108,7 +108,10 @@ class BoatWaveView: UIView {
         underWaveLayer = underWave
         
         waveLayer = CAShapeLayer()
-        let path = UIBezierPath(rect: CGRect(x: 0, y: bounds.midY, width: bounds.width, height: bounds.height / 2))
+        let path = UIBezierPath(rect: CGRect(x: 0,
+                                             y: bounds.maxY - minWaterDepth - waveHeight / 2,
+                                             width: bounds.width,
+                                             height: minWaterDepth + waveHeight / 2))
         waveLayer.path = path.cgPath
         underWaveLayer.mask = waveLayer
     }
@@ -151,7 +154,9 @@ class BoatWaveView: UIView {
         let centerX = totalWidth / 2
         let bottomCenter = point(at: Int(centerX))
         // Identity translated y
-        let transform = CGAffineTransform(a: 1, b: 0, c: 0, d: 1, tx: 0, ty: bottomCenter.y - bounds.midY)
+        let transform = CGAffineTransform(a: 1, b: 0,
+                                          c: 0, d: 1,
+                                          tx: 0, ty: bottomCenter.y - (bounds.maxY - minWaterDepth - waveHeight / 2))
         let angle = angleInRadians(at: centerX)
         let tanValue = -waveHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
         boatImageView.transform = transform.rotated(by: atan(tanValue))
