@@ -166,29 +166,44 @@ class EmitterVC: UIViewController {
     }
     
     @IBAction func centerHeartButtonClicked(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
         centerHeartLayer.beginTime = CACurrentMediaTime() // There will be too many cell without setting begin time
         centerHeartLayer.birthRate = 1
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.centerHeartLayer.birthRate = 0
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard self != nil else { return }
+            sender.isUserInteractionEnabled = true
+        }
     }
     
     @IBAction func leftHeartButtonClicked(_ sender: UIButton) {
-        leftHeartLayer.beginTime = CACurrentMediaTime()
+        sender.isUserInteractionEnabled = false
+        leftHeartLayer.beginTime = CACurrentMediaTime() - 0.05
         leftHeartLayer.birthRate = 1
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.leftHeartLayer.birthRate = 0
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard self != nil else { return }
+            sender.isUserInteractionEnabled = true
+        }
     }
     
     @IBAction func rightHeartButtonClicked(_ sender: UIButton) {
-        rightHeartLayer.beginTime = CACurrentMediaTime()
+        sender.isUserInteractionEnabled = false
+        rightHeartLayer.beginTime = CACurrentMediaTime() - 0.5
         rightHeartLayer.birthRate = 1
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.rightHeartLayer.birthRate = 0
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) { [weak self] in
+            guard self != nil else { return }
+            sender.isUserInteractionEnabled = true
         }
     }
     
