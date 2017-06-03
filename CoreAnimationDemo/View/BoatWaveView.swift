@@ -34,6 +34,24 @@ class BoatWaveView: UIView {
         }
     }
     
+    /*
+      _ <- H
+     / \
+        \_/ <- L
+     
+     The height between a wave highest point and lowest point (H - L).
+     This value should be greater than or equal to 0.
+     */
+    var waveHeight: CGFloat = 50 {
+        didSet {
+            assert(waveHeight >= 0, "Wave height (\(waveHeight)) must >= 0")
+        }
+    }
+    
+    /**
+     A wave lowest point height. See waveHeight property.
+     This value should be greater than 0.
+     */
     var minWaterDepth: CGFloat = 20 {
         didSet {
             assert(minWaterDepth > 0, "Min water depth (\(minWaterDepth)) must > 0")
@@ -76,18 +94,18 @@ class BoatWaveView: UIView {
         layer.addSublayer(sky)
         skyLayer = sky
         
+        boatImageView = UIImageView(image: #imageLiteral(resourceName: "Boat"))
+        boatImageView.frame = CGRect(origin: CGPoint(x: bounds.midX - kBoatImageViewSize.width / 2,
+                                                     y: bounds.midY - kBoatImageViewSize.height),
+                                     size: kBoatImageViewSize)
+        addSubview(boatImageView)
+        
         let underWave = CAGradientLayer()
         underWave.frame = bounds
         underWave.colors = [UIColor(red: 0.471, green: 0.784, blue: 1.000, alpha: 1).cgColor,
                             UIColor(red: 0.122, green: 0.365, blue: 0.788, alpha: 1).cgColor]
         layer.addSublayer(underWave)
         underWaveLayer = underWave
-        
-        boatImageView = UIImageView(image: #imageLiteral(resourceName: "Boat"))
-        boatImageView.frame = CGRect(origin: CGPoint(x: bounds.midX - kBoatImageViewSize.width / 2,
-                                                     y: bounds.midY - kBoatImageViewSize.height),
-                                     size: kBoatImageViewSize)
-        addSubview(boatImageView)
         
         waveLayer = CAShapeLayer()
         let path = UIBezierPath(rect: CGRect(x: 0, y: bounds.midY, width: bounds.width, height: bounds.height / 2))
@@ -96,11 +114,9 @@ class BoatWaveView: UIView {
     }
     
     @objc private func waveLinkRefresh() {
-        // Wave width
         let totalWidth: CGFloat = bounds.width
-        // Highest wave height - lowest wave height
-        let totalHeight: CGFloat = bounds.height - kBoatImageViewSize.height - minWaterDepth
-        assert(totalWidth > 0 && totalHeight > 0, "Total width (\(totalWidth)) and total height (\(totalHeight)) must > 0")
+        assert(totalWidth > 0 && waveHeight <= bounds.height - kBoatImageViewSize.height - minWaterDepth,
+               "Total width (\(totalWidth)) must > 0 and wave height (\(waveHeight)) must <= \(bounds.height - kBoatImageViewSize.height - minWaterDepth)")
         
         func angleInRadians(at x: CGFloat) -> CGFloat {
             return x / totalWidth * (PI_Circle * cycleCount)
@@ -109,12 +125,12 @@ class BoatWaveView: UIView {
         func point(at i: Int) -> CGPoint {
             let x = CGFloat(i)
             let angle = angleInRadians(at: x)
-            return CGPoint(x: x, y: (1 - sin(angle + currentPhase)) * totalHeight / 2 + kBoatImageViewSize.height)
+            return CGPoint(x: x, y: bounds.height - minWaterDepth - (sin(angle + currentPhase) + 1) * waveHeight / 2)
         }
         
         // Draw wave
         
-        UIGraphicsBeginImageContext(CGSize(width: totalWidth, height: totalHeight))
+        UIGraphicsBeginImageContext(CGSize(width: totalWidth, height: waveHeight))
         
         let path = UIBezierPath()
         path.move(to: point(at: 0))
@@ -137,7 +153,7 @@ class BoatWaveView: UIView {
         // Identity translated y
         let transform = CGAffineTransform(a: 1, b: 0, c: 0, d: 1, tx: 0, ty: bottomCenter.y - bounds.midY)
         let angle = angleInRadians(at: centerX)
-        let tanValue = -totalHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
+        let tanValue = -waveHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
         boatImageView.transform = transform.rotated(by: atan(tanValue))
         
         currentPhase += step
