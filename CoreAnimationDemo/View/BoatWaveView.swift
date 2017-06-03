@@ -9,6 +9,7 @@
 import UIKit
 
 private let kBoatImageViewSize: CGSize = CGSize(width: 20, height: 20)
+private let PI_Circle: CGFloat = CGFloat.pi * 2
 
 class BoatWaveView: UIView {
 
@@ -23,7 +24,6 @@ class BoatWaveView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setup()
     }
     
@@ -32,11 +32,14 @@ class BoatWaveView: UIView {
     }
     
     deinit {
+        NotificationCenter.default.removeObserver(self)
         waveLink?.invalidate()
     }
     
     private func setup() {
-        backgroundColor = .yellow
+        NotificationCenter.default.addObserver(self, selector: #selector(stop), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(start), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        
         waveLayer = CAShapeLayer()
         waveLayer.frame = bounds
         waveLayer.fillColor = UIColor.white.cgColor
@@ -52,19 +55,22 @@ class BoatWaveView: UIView {
     
     @objc private func waveLinkRefresh() {
         let totalWidth: CGFloat = bounds.width
-        let totalHeight: CGFloat = bounds.height
+        let totalHeight: CGFloat = bounds.height - kBoatImageViewSize.height
         let cycleCount: CGFloat = 0.5
-        UIGraphicsBeginImageContext(CGSize(width: totalWidth, height: totalHeight))
         
         func angleInRadians(at x: CGFloat) -> CGFloat {
-            return x / totalWidth * (CGFloat.pi * 2 * cycleCount)
+            return x / totalWidth * (PI_Circle * cycleCount)
         }
         
         func point(at i: Int) -> CGPoint {
             let x = CGFloat(i)
             let angle = angleInRadians(at: x)
-            return CGPoint(x: x, y: (1 - sin(angle + currentPhase)) * totalHeight / 2)
+            return CGPoint(x: x, y: (1 - sin(angle + currentPhase)) * totalHeight / 2 + kBoatImageViewSize.height)
         }
+        
+        // Draw wave
+        
+        UIGraphicsBeginImageContext(CGSize(width: totalWidth, height: totalHeight))
         
         let path = UIBezierPath()
         path.move(to: point(at: 0))
@@ -76,16 +82,21 @@ class BoatWaveView: UIView {
         
         UIGraphicsEndImageContext()
         
+        // Move boat
+        
         let centerX = totalWidth / 2
         let bottomCenter = point(at: Int(centerX))
-        var transform: CGAffineTransform = .identity
-        transform = transform.translatedBy(x: 0, y: bottomCenter.y - bounds.midY)
+        // Identity translated y
+        let transform = CGAffineTransform(a: 1, b: 0, c: 0, d: 1, tx: 0, ty: bottomCenter.y - bounds.midY)
         let angle = angleInRadians(at: centerX)
         let tanValue = -totalHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
-        transform = transform.rotated(by: atan(tanValue))
-        boatImageView.transform = transform
+        boatImageView.transform = transform.rotated(by: atan(tanValue))
         
         currentPhase += 0.05
+        if currentPhase > PI_Circle {
+            currentPhase -= PI_Circle
+        }
+        print(currentPhase)
     }
     
     override func didMoveToSuperview() {
