@@ -13,6 +13,27 @@ private let PI_Circle: CGFloat = CGFloat.pi * 2
 
 class BoatWaveView: UIView {
 
+    /**
+     Wave move step.
+     A positive value specifies right movement, a negative value specifies left movement.
+     This value should NOT be 0.
+     */
+    var step: CGFloat = 0.05 {
+        didSet {
+            assert(step != 0, "Step must != 0")
+        }
+    }
+    
+    /**
+     Number of wave cycle the view can display each time.
+     This value should be greater than or equal to 0.
+     */
+    var cycleCount: CGFloat = 0.5 {
+        didSet {
+            assert(cycleCount >= 0, "Cycle count must >= 0")
+        }
+    }
+    
     private var waveLayer: CAShapeLayer!
     private var currentPhase: CGFloat = 0
     private var waveLink: CADisplayLink?
@@ -56,7 +77,6 @@ class BoatWaveView: UIView {
     @objc private func waveLinkRefresh() {
         let totalWidth: CGFloat = bounds.width
         let totalHeight: CGFloat = bounds.height - kBoatImageViewSize.height
-        let cycleCount: CGFloat = 0.5
         
         func angleInRadians(at x: CGFloat) -> CGFloat {
             return x / totalWidth * (PI_Circle * cycleCount)
@@ -92,9 +112,11 @@ class BoatWaveView: UIView {
         let tanValue = -totalHeight / 2 * cos(angle + currentPhase) * angleInRadians(at: 1) // Derivative of y
         boatImageView.transform = transform.rotated(by: atan(tanValue))
         
-        currentPhase += 0.05
+        currentPhase += step
         if currentPhase > PI_Circle {
             currentPhase -= PI_Circle
+        } else if currentPhase < PI_Circle {
+            currentPhase += PI_Circle
         }
         print(currentPhase)
     }
