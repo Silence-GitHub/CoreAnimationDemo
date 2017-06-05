@@ -16,13 +16,13 @@ class PulsatorVC: UIViewController {
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var maxAlphaLabel: UILabel!
     
-    var pulsatorLayer: SWPulsatorLayer!
+    var pulsatorLayer: PulsatorLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        pulsatorLayer = SWPulsatorLayer()
+        pulsatorLayer = PulsatorLayer()
         pulsatorLayer.frame = CGRect(x: view.bounds.width / 2, y: 170, width: 0, height: 0)
         view.layer.addSublayer(pulsatorLayer)
         

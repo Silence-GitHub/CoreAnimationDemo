@@ -1,5 +1,5 @@
 //
-//  SWPulsatorLayer.swift
+//  PulsatorLayer.swift
 //  CoreAnimationDemo
 //
 //  Created by Kaibo Lu on 2017/5/27.
@@ -10,7 +10,7 @@ import UIKit
 
 private let kPulseAnimationKey: String = "PulseAnimationKey"
 
-class SWPulsatorLayer: CAReplicatorLayer {
+class PulsatorLayer: CAReplicatorLayer {
 
     enum Orientation {
         case out
