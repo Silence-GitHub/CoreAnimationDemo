@@ -21,6 +21,8 @@ class PulsatorVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Pulsator"
+        
         view.backgroundColor = .white
         pulsatorLayer = PulsatorLayer()
         pulsatorLayer.frame = CGRect(x: view.bounds.width / 2, y: 170, width: 0, height: 0)

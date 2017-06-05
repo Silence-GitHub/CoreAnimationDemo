@@ -23,6 +23,8 @@ class EmitterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Emitter"
+        
         setupRainLayer()
         setupCenterHeartLayer()
         setupLeftHeartLayer()

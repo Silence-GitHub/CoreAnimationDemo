@@ -21,6 +21,7 @@ class WaveVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Wave"
         view.backgroundColor = .white
         
         boatWaveView = BoatWaveView(frame: CGRect(x: 0, y: 100, width: view.bounds.width, height: 100))
