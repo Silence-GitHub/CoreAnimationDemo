@@ -6,6 +6,10 @@ iOS core animation demo.
 
 ![](README_resources/Pulsator.gif)
 
+Implimented with CAReplicatorLayer and CABasicAnimation.
+
+Blog: http://www.cnblogs.com/silence-cnblogs/p/6951948.html
+
 ## Emitter
 
 ![](README_resources/Emitter.gif)
