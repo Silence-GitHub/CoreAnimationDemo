@@ -153,6 +153,7 @@ class EmitterVC: UIViewController {
     }
 
     @IBAction func rainButtonClicked(_ sender: UIButton) {
+        sender.isUserInteractionEnabled = false
         let birthRateAnimation = CABasicAnimation(keyPath: "birthRate")
         birthRateAnimation.duration = 3
         if rainLayer.birthRate == 0 {
@@ -165,6 +166,10 @@ class EmitterVC: UIViewController {
             rainLayer.birthRate = 0
         }
         rainLayer.add(birthRateAnimation, forKey: "birthRate")
+        DispatchQueue.main.asyncAfter(deadline: .now() + birthRateAnimation.duration) { [weak self] in
+            guard self != nil else { return }
+            sender.isUserInteractionEnabled = true
+        }
     }
     
     @IBAction func centerHeartButtonClicked(_ sender: UIButton) {
