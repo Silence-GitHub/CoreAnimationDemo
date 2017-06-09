@@ -202,13 +202,13 @@ class EmitterVC: UIViewController {
     
     @IBAction func rightHeartButtonClicked(_ sender: UIButton) {
         sender.isUserInteractionEnabled = false
-        rightHeartLayer.beginTime = CACurrentMediaTime() - 0.5
+        rightHeartLayer.beginTime = CACurrentMediaTime() - 0.2
         rightHeartLayer.birthRate = 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.rightHeartLayer.birthRate = 0
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in
             guard self != nil else { return }
             sender.isUserInteractionEnabled = true
         }
