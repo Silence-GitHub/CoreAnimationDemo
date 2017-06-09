@@ -87,7 +87,7 @@ class EmitterVC: UIViewController {
         cell.contents = #imageLiteral(resourceName: "Heart_red").cgImage
         cell.scale = 0.5
         cell.lifetime = 1
-        cell.birthRate = 10 // emit duration = 0.1, only 1 cell displayed each time
+        cell.birthRate = 1
         cell.alphaSpeed = -1
         cell.velocity = 50
         cell.emissionLongitude = -CGFloat.pi / 2
@@ -188,7 +188,7 @@ class EmitterVC: UIViewController {
     
     @IBAction func leftHeartButtonClicked(_ sender: UIButton) {
         sender.isUserInteractionEnabled = false
-        leftHeartLayer.beginTime = CACurrentMediaTime() - 0.05
+        leftHeartLayer.beginTime = CACurrentMediaTime() - 1
         leftHeartLayer.birthRate = 1
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             guard let strongSelf = self else { return }
