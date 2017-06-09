@@ -14,6 +14,10 @@ Blog: http://www.cnblogs.com/silence-cnblogs/p/6951948.html
 
 ![](README_resources/Emitter.gif)
 
+Implemented with CAEmitterLayer.
+
+Blog: http://www.cnblogs.com/silence-cnblogs/p/6971533.html
+
 ## Wave
 
 ![](README_resources/Wave.gif)
