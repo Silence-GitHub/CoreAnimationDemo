@@ -21,3 +21,7 @@ Blog: http://www.cnblogs.com/silence-cnblogs/p/6971533.html
 ## Wave
 
 ![](README_resources/Wave.gif)
+
+Implemented with CAShapeLayer, CAGradientLayer and CADisplayLink.
+
+Blog: http://www.cnblogs.com/silence-cnblogs/p/6979418.html
