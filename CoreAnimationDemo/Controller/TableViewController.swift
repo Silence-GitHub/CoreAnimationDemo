@@ -18,36 +18,29 @@ class TableViewController: UITableViewController {
 
     // MARK: - Table view data source
     
-    private let titles: [String] = ["Pulsator", "Emitter", "Wave"]
+    private let vcs: [[String : String]] = [["title" : "Pulsator", "vc" : "PulsatorVC"],
+                                            ["title" : "Emitter", "vc" : "EmitterVC"],
+                                            ["title" : "Wave", "vc" : "WaveVC"]]
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return vcs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row]
+        cell.textLabel?.text = vcs[indexPath.row]["title"]
         return cell
     }
 
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc: UIViewController
-        switch indexPath.row {
-        case 0:
-            vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PulsatorVC")
-        case 1:
-            vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EmitterVC")
-        case 2:
-            vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WaveVC")
-        default:
-            fatalError()
-        }
+        let identifier = vcs[indexPath.row]["vc"]!
+        let vc: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
