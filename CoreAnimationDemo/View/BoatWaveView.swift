@@ -118,8 +118,8 @@ class BoatWaveView: UIView {
     }
     
     private func setup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(stop), name: Notification.Name.UIApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(start), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stop), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(start), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         let sky = CAGradientLayer()
         sky.frame = bounds
@@ -250,14 +250,15 @@ class BoatWaveView: UIView {
         } else {
             waveLink = CADisplayLink(target: self, selector: #selector(waveLinkRefresh))
             waveLink?.isPaused = true
-            waveLink?.add(to: .current, forMode: .defaultRunLoopMode)
+            waveLink?.add(to: .current, forMode: RunLoop.Mode.default)
+//            waveLink?.add(to: .current, forMode: .defaultRunLoopMode)
         }
     }
     
     /**
      Start animation. If wave height is 0, use last positive wave height.
      */
-    func start() {
+    @objc func start() {
         if waveHeight == 0, targetWaveHeight == 0 {
             targetWaveHeight = lastPositiveTargetWaveHeight
         }
@@ -274,7 +275,7 @@ class BoatWaveView: UIView {
     /**
      Stop animation by reducing wave height step by step until it is 0.
      */
-    func stop() {
+    @objc func stop() {
         targetWaveHeight = 0
     }
 

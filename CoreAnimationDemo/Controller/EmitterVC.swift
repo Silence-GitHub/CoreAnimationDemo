@@ -34,9 +34,9 @@ class EmitterVC: UIViewController {
     
     private func setupRainLayer() {
         rainLayer = CAEmitterLayer()
-        rainLayer.emitterShape = kCAEmitterLayerLine // Default emit orientation is up
-        rainLayer.emitterMode = kCAEmitterLayerOutline
-        rainLayer.renderMode = kCAEmitterLayerOldestFirst
+        rainLayer.emitterShape = CAEmitterLayerEmitterShape.line // Default emit orientation is up
+        rainLayer.emitterMode = CAEmitterLayerEmitterMode.outline
+        rainLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
         rainLayer.emitterPosition = CGPoint(x: view.bounds.midX, y: 0)
         rainLayer.emitterSize = CGSize(width: view.bounds.width, height: 0)
         rainLayer.birthRate = 0 // Stop animation by default
@@ -55,9 +55,9 @@ class EmitterVC: UIViewController {
     
     private func setupCenterHeartLayer() {
         centerHeartLayer = CAEmitterLayer()
-        centerHeartLayer.emitterShape = kCAEmitterLayerCircle
-        centerHeartLayer.emitterMode = kCAEmitterLayerOutline
-        centerHeartLayer.renderMode = kCAEmitterLayerOldestFirst
+        centerHeartLayer.emitterShape = CAEmitterLayerEmitterShape.circle
+        centerHeartLayer.emitterMode = CAEmitterLayerEmitterMode.outline
+        centerHeartLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
         centerHeartLayer.emitterPosition = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
         centerHeartLayer.emitterSize = centerHeartButton.frame.size
         centerHeartLayer.birthRate = 0
@@ -77,9 +77,9 @@ class EmitterVC: UIViewController {
     
     private func setupLeftHeartLayer() {
         leftHeartLayer = CAEmitterLayer()
-        leftHeartLayer.emitterShape = kCAEmitterLayerPoint // default value, emit orientation is right
-        leftHeartLayer.emitterMode = kCAEmitterLayerVolume // default value
-        leftHeartLayer.renderMode = kCAEmitterLayerOldestFirst
+        leftHeartLayer.emitterShape = CAEmitterLayerEmitterShape.point // default value, emit orientation is right
+        leftHeartLayer.emitterMode = CAEmitterLayerEmitterMode.volume // default value
+        leftHeartLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
         leftHeartLayer.emitterPosition = CGPoint(x: view.bounds.midX * 0.5, y: view.bounds.midY)
         leftHeartLayer.birthRate = 0
         
@@ -98,7 +98,7 @@ class EmitterVC: UIViewController {
     
     private func setupRightHeartLayer() {
         rightHeartLayer = CAEmitterLayer()
-        rightHeartLayer.renderMode = kCAEmitterLayerOldestFirst
+        rightHeartLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
         rightHeartLayer.emitterPosition = CGPoint(x: view.bounds.midX * 1.5, y: view.bounds.midY)
         rightHeartLayer.birthRate = 0
         
@@ -118,7 +118,7 @@ class EmitterVC: UIViewController {
     
     private func setupGravityLayer() {
         gravityLayer = CAEmitterLayer()
-        gravityLayer.renderMode = kCAEmitterLayerOldestFirst
+        gravityLayer.renderMode = CAEmitterLayerRenderMode.oldestFirst
         gravityLayer.emitterPosition = CGPoint(x: 0, y: view.bounds.maxY)
         gravityLayer.birthRate = 0
         

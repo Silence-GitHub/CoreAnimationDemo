@@ -125,8 +125,8 @@ class PulsatorLayer: CAReplicatorLayer {
         pulseLayer.cornerRadius = maxRadius
         addSublayer(pulseLayer)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(save), name: Notification.Name.UIApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(resume), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(save), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resume), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override init(layer: Any) {
