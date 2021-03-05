@@ -15,19 +15,39 @@ class ShakeTextFieldVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
         shakingTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        shakingTextField.shakeVertical()
+
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        shakingTextField.shakeCrazy()
+
+    }
+
+    
+    
+    
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField.text!.count > 8 {
-            shakingTextField.shake()
+            shakingTextField.shakeHorizontal()
             textField.text = ""
             return false
         }
         return true
     }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        shakingTextField.resignFirstResponder()
+    }
+
     /*
     // MARK: - Navigation
 
