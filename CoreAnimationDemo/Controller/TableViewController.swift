@@ -22,7 +22,9 @@ class TableViewController: UITableViewController {
                                             ["title" : "Emitter", "vc" : "EmitterVC"],
                                             ["title" : "Wave", "vc" : "WaveVC"],
                                             ["title" : "Shaking TextField", "vc" : "ShakeTextFieldVC"],
-                                            ["title" : "Pulsating Tap", "vc" : "PulsatingTapVC"]]
+                                            ["title" : "Pulsating Tap", "vc" : "PulsatingTapVC"],
+                                            ["title" : "Circle Progress", "vc" : "CircleProgressVC"],
+    ]
 
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -21,6 +21,7 @@
 		C20E08F925F2922500C885A8 /* PulsatingTapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */; };
 		C20E08FE25F292DC00C885A8 /* ShakingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E08FD25F292DC00C885A8 /* ShakingTextField.swift */; };
 		C20E090225F2A09500C885A8 /* Pulsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E090125F2A09500C885A8 /* Pulsing.swift */; };
+		C2A81FA625F2B9CB00D32287 /* CircleProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A81FA525F2B9CB00D32287 /* CircleProgressVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsatingTapVC.swift; sourceTree = "<group>"; };
 		C20E08FD25F292DC00C885A8 /* ShakingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakingTextField.swift; sourceTree = "<group>"; };
 		C20E090125F2A09500C885A8 /* Pulsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pulsing.swift; sourceTree = "<group>"; };
+		C2A81FA525F2B9CB00D32287 /* CircleProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,13 +74,10 @@
 		4AB267281ED9273B00DC5806 /* CoreAnimationDemo */ = {
 			isa = PBXGroup;
 			children = (
+				4AB267351ED9273B00DC5806 /* Info.plist */,
 				4AB267401ED92A0400DC5806 /* View */,
 				4AB2673B1ED927A600DC5806 /* Controller */,
-				4AB267291ED9273B00DC5806 /* AppDelegate.swift */,
-				4AB2672D1ED9273B00DC5806 /* Main.storyboard */,
-				4AB267301ED9273B00DC5806 /* Assets.xcassets */,
-				4AB267321ED9273B00DC5806 /* LaunchScreen.storyboard */,
-				4AB267351ED9273B00DC5806 /* Info.plist */,
+				C2A81FA425F2B98400D32287 /* Resources */,
 			);
 			path = CoreAnimationDemo;
 			sourceTree = "<group>";
@@ -87,11 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				4AB2673C1ED927B600DC5806 /* TableViewController.swift */,
-				C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */,
-				C20E08F525F291F400C885A8 /* ShakeTextFieldVC.swift */,
 				4AB2673E1ED928EF00DC5806 /* PulsatorVC.swift */,
 				4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */,
 				4AB267451EE0373100DC5806 /* WaveVC.swift */,
+				C20E08F525F291F400C885A8 /* ShakeTextFieldVC.swift */,
+				C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */,
+				C2A81FA525F2B9CB00D32287 /* CircleProgressVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -105,6 +105,17 @@
 				C20E08FD25F292DC00C885A8 /* ShakingTextField.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C2A81FA425F2B98400D32287 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4AB267291ED9273B00DC5806 /* AppDelegate.swift */,
+				4AB2672D1ED9273B00DC5806 /* Main.storyboard */,
+				4AB267301ED9273B00DC5806 /* Assets.xcassets */,
+				4AB267321ED9273B00DC5806 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +197,7 @@
 				4A9159CA1EE18392004051BF /* BoatWaveView.swift in Sources */,
 				4AB267421ED92A8F00DC5806 /* PulsatorLayer.swift in Sources */,
 				4AB2673F1ED928EF00DC5806 /* PulsatorVC.swift in Sources */,
+				C2A81FA625F2B9CB00D32287 /* CircleProgressVC.swift in Sources */,
 				C20E08F925F2922500C885A8 /* PulsatingTapVC.swift in Sources */,
 				4AB2673D1ED927B600DC5806 /* TableViewController.swift in Sources */,
 				4AB267441EDFCC1E00DC5806 /* EmitterVC.swift in Sources */,

@@ -319,10 +319,10 @@
             </objects>
             <point key="canvasLocation" x="2598" y="866"/>
         </scene>
-        <!--View Controller-->
+        <!--Circle ProgressVC-->
         <scene sceneID="fN7-Bu-rAt">
             <objects>
-                <viewController id="qAi-wH-QJB" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CircleProgressVC" id="qAi-wH-QJB" customClass="CircleProgressVC" customModule="CoreAnimationDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r7Z-Vh-t9K"/>
                         <viewControllerLayoutGuide type="bottom" id="UjP-OX-7uj"/>
