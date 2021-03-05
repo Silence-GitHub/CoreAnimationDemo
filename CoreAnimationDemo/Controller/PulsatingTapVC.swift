@@ -10,10 +10,23 @@ import UIKit
 
 class PulsatingTapVC: UIViewController {
 
+    @IBOutlet weak var plainView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        plainView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PulsatingTapVC.addPulse))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        plainView.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func addPulse() {
+        let pulse = Pulsing(numberOfPulses: 1, radius: 110, position: plainView.center)
+        pulse.animationDuration = 0.8
+        pulse.backgroundColor = UIColor.blue.cgColor
+        print("pulse")
+        self.view.layer.insertSublayer(pulse, below: plainView.layer)
     }
     
 
