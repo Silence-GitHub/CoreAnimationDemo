@@ -20,7 +20,10 @@ class TableViewController: UITableViewController {
     
     private let vcs: [[String : String]] = [["title" : "Pulsator", "vc" : "PulsatorVC"],
                                             ["title" : "Emitter", "vc" : "EmitterVC"],
-                                            ["title" : "Wave", "vc" : "WaveVC"]]
+                                            ["title" : "Wave", "vc" : "WaveVC"],
+                                            ["title" : "Shaking TextField", "vc" : "ShakeTextFieldVC"],
+                                            ["title" : "Pulsating Tap", "vc" : "PulsatingTapVC"]]
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

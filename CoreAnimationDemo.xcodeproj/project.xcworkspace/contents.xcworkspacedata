@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CoreAnimationDemo.xcodeproj">
+      location = "self:/Users/alvintu/Developer/CoreAnimationDemo/CoreAnimationDemo.xcodeproj">
    </FileRef>
 </Workspace>

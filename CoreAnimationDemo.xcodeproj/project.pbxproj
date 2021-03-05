@@ -17,6 +17,9 @@
 		4AB267421ED92A8F00DC5806 /* PulsatorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB267411ED92A8F00DC5806 /* PulsatorLayer.swift */; };
 		4AB267441EDFCC1E00DC5806 /* EmitterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */; };
 		4AB267461EE0373100DC5806 /* WaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB267451EE0373100DC5806 /* WaveVC.swift */; };
+		C20E08F625F291F400C885A8 /* ShakeTextFieldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E08F525F291F400C885A8 /* ShakeTextFieldVC.swift */; };
+		C20E08F925F2922500C885A8 /* PulsatingTapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */; };
+		C20E08FE25F292DC00C885A8 /* ShakingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E08FD25F292DC00C885A8 /* ShakingTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		4AB267411ED92A8F00DC5806 /* PulsatorLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulsatorLayer.swift; sourceTree = "<group>"; };
 		4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterVC.swift; sourceTree = "<group>"; };
 		4AB267451EE0373100DC5806 /* WaveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveVC.swift; sourceTree = "<group>"; };
+		C20E08F525F291F400C885A8 /* ShakeTextFieldVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeTextFieldVC.swift; sourceTree = "<group>"; };
+		C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsatingTapVC.swift; sourceTree = "<group>"; };
+		C20E08FD25F292DC00C885A8 /* ShakingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakingTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				4AB2673C1ED927B600DC5806 /* TableViewController.swift */,
+				C20E08F825F2922500C885A8 /* PulsatingTapVC.swift */,
+				C20E08F525F291F400C885A8 /* ShakeTextFieldVC.swift */,
 				4AB2673E1ED928EF00DC5806 /* PulsatorVC.swift */,
 				4AB267431EDFCC1E00DC5806 /* EmitterVC.swift */,
 				4AB267451EE0373100DC5806 /* WaveVC.swift */,
@@ -91,6 +99,7 @@
 			children = (
 				4AB267411ED92A8F00DC5806 /* PulsatorLayer.swift */,
 				4A9159C91EE18392004051BF /* BoatWaveView.swift */,
+				C20E08FD25F292DC00C885A8 /* ShakingTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,12 +179,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AB2672A1ED9273B00DC5806 /* AppDelegate.swift in Sources */,
+				C20E08FE25F292DC00C885A8 /* ShakingTextField.swift in Sources */,
 				4A9159CA1EE18392004051BF /* BoatWaveView.swift in Sources */,
 				4AB267421ED92A8F00DC5806 /* PulsatorLayer.swift in Sources */,
 				4AB2673F1ED928EF00DC5806 /* PulsatorVC.swift in Sources */,
+				C20E08F925F2922500C885A8 /* PulsatingTapVC.swift in Sources */,
 				4AB2673D1ED927B600DC5806 /* TableViewController.swift in Sources */,
 				4AB267441EDFCC1E00DC5806 /* EmitterVC.swift in Sources */,
 				4AB267461EE0373100DC5806 /* WaveVC.swift in Sources */,
+				C20E08F625F291F400C885A8 /* ShakeTextFieldVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
